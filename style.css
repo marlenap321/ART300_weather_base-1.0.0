@@ -10,3 +10,211 @@
 	width: 600px;
     height: 600px;
 }
+body{
+    background-color: rgb(243, 235, 226);
+}
+h1{
+    font-family: neue-aachen-pro, sans-serif;
+    font-weight: 700;
+    font-size: 20em;
+    color: #E0CA3C;
+}
+h2{
+    font-family: neue-aachen-pro, sans-serif;
+    font-weight: 400;
+    font-size: 3.5em;
+    color: #2D3047;
+}
+h3{
+    font-family: neue-aachen-pro, sans-serif;
+    font-weight: 400;
+    font-size: 1.5em;
+    color: #2D3047;
+}
+h4{
+    font-family: Helvetica;
+    font-weight: 200;
+    font-size: 1em;
+}
+h5{
+    font-family: neue-aachen-pro, sans-serif;
+    font-weight: 300;
+    font-size: 1em;
+    color: #2D3047;
+}
+p{
+    font-family: Helvetica;
+    font-weight: 200;
+    font-size: 1.2em;
+}
+.main_page_left{
+    width: 50%;
+    height: 500px;
+    float: left;
+}
+.current_title{
+    margin-left: 30px;
+}
+.location{
+    padding-left: 50px;
+    margin-bottom: -50px;
+
+}
+.date{
+    width: 175px;
+    float: left;
+    margin-left: 60px;
+    margin-right: 100px;
+
+}
+.time{
+    width: 75px;
+    float: left;
+    margin-right: 125px;
+
+}
+.hi_low{
+    width: 125px;
+    float: left;
+}
+.line1{
+    width: 750px;
+    height: 3px;
+    background-color: #E0CA3C;
+    margin-left: 25px;
+    margin-top: 125px;
+}
+.main_description{
+    width: 600px;
+    height: 125px;
+    display: block;
+    margin-left: 50px;
+    margin-top: 30px;
+
+}
+.line2{
+    width: 750px;
+    height: 3px;
+    background-color: #E0CA3C;
+    margin-left: 25px;
+    margin-top: -15px;
+}
+.wind{
+    width: 175px;
+    float: left;
+    margin-left: 60px;
+    margin-right: 120px;
+    text-align: center;
+}
+.humidity{
+    width: 100px;
+    float: left;
+    margin-right: 120px;
+    text-align: center;
+}
+.air{
+    width: 100px;
+    float: left;
+    text-align: center;
+
+}
+.main_page_right{
+    width: 50%;
+    height: 500px;
+    background-color:rgb(243, 235, 226);
+    float: left;
+}
+.sunrise{
+    width: 100px;
+    float: left;
+    margin-left: 460px;
+    text-align: center;
+    
+}
+.sunset{
+    width: 100px;
+    float: right;
+    margin-right: 30px;
+    text-align: center;
+}
+.temp{
+    margin-top:-80px;
+    margin-left: 100px;
+}
+.current_weather_icon{
+    width: 100px;
+    height:70px;
+    margin:auto;
+    padding-right: 100px;
+}
+.hour_forecast{
+    width: 90%;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 40px;
+    text-align: center;
+    margin: auto;
+    padding-top: 150px;
+}
+.hour_img{
+    width: 35px;
+    height: 35px;
+    margin: auto;
+}
+.radar{
+    width: 50%;
+    height: 400px;
+    background-color: lightslategray;
+    display: block;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.upcoming_weather_forecast{
+    width: 90%;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 40px;
+    text-align: center;
+    margin: auto;
+}
+.day_img{
+    width: 70px;
+    height: 70px;
+    margin: auto;
+}
+
+.divider{
+    width: 3px;
+    height: 250px;
+    background-color: #E0CA3C;
+    margin-right: -100px;
+}
+.radar_title{
+    margin-left: 50px;
+}
+.forecast_title{
+    margin-left: 50px;
+}
+.details{
+    width: 40%;
+    height: 150px;
+    float: left;
+    margin-left: 80px;
+
+}
+.alerts1{
+    width: 45%;
+    height: 40px;
+    float: left;
+    margin-left: 70px;
+}
+.alerts2{
+    width: 45%;
+    height: 150px;
+    float: left;
+    margin-left: 70px;
+    color: red;
+}
