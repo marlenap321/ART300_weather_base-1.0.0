@@ -47,6 +47,10 @@ p{
     font-weight: 200;
     font-size: 1.2em;
 }
+.img{
+    width: 100%;
+    height: 100%;
+}
 .main_page_left{
     width: 50%;
     height: 500px;
@@ -68,7 +72,7 @@ p{
 
 }
 .time{
-    width: 75px;
+    width: 100px;
     float: left;
     margin-right: 125px;
 
@@ -166,12 +170,59 @@ p{
     width: 50%;
     height: 400px;
     background-color: lightslategray;
-    display: block;
     margin-left: 50px;
     margin-top: 50px;
     margin-bottom: 100px;
 }
-
+.info_grid_1{
+    width: 35%;
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    text-align: center;
+    float: right;
+    margin-top: -500px;
+    margin-right: 100px;
+}
+.line3{
+    width: 36%;
+    height: 3px;
+    background-color: #E0CA3C;
+    float: right;
+    margin-top: -375px;
+    margin-right: 75px;
+}
+.info_grid_2{
+    width: 35%;
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    text-align: center;
+    float: right;
+    margin-top: -360px;
+    margin-right: 100px;
+}
+.line4{
+    width: 36%;
+    height: 3px;
+    background-color: #E0CA3C;
+    float: right;
+    margin-top: -230px;
+    margin-right: 75px;
+}
+.info_grid_3{
+    width: 35%;
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    text-align: center;
+    float: right;
+    margin-top: -225px;
+    margin-right: 100px;
+}
 .upcoming_weather_forecast{
     width: 90%;
     height: 400px;
@@ -201,7 +252,7 @@ p{
 }
 .details{
     width: 40%;
-    height: 150px;
+    height: 50px;
     float: left;
     margin-left: 80px;
 
@@ -214,7 +265,7 @@ p{
 }
 .alerts2{
     width: 45%;
-    height: 150px;
+    height: 50px;
     float: left;
     margin-left: 70px;
     color: red;

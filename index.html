@@ -32,332 +32,385 @@
     <body>
 
 
+        <div class="results" id="app">
+            <input placeholder="Enter Your ZIP Code" v-on:imput="zip_trigger" name="name" id="zip" />
+            <p id="zip_display"></p>
 
-        <input placeholder="Enter Your ZIP Code" name="name" id="zip" />
-        <p id="zip_display"></p>
-
-        <div class="main_page_left">
-            <div class="current_title">
-                <h3>Current Weather Forecast</h3>
-            </div>
-            <div class="location">
-                <h2>Manhattan, KS 66502</h2>
-            </div>
-            <div class="date">
-                <h3>October 14, 2019</h3>
-            </div>
-            <div class="time">
-                <h3>1:48 PM</h3>
-            </div>
-            <div class="hi_low">
-                <h3>H 77º | L 48º</h3>
-            </div>
-            <div class="line1"></div>
-            <div class="main_description">
-                <p>Partly cloudy currently. The high today will be 60º. Clear tonight with a low of 41º.</p>
-                <p><b>Alerts:</b> no current alerts</p>
-            </div>
-            <div class="line2"></div>
-            <div class="wind">
-                <h4>wind speed + direction</h4>
-                <h3>s 16 mph</h3>
-            </div>
-            <div class="humidity">
-                <h4>humidity</h4>
-                <h3>38%</h3>
-            </div>
-            <div class="air">
-                <h4>air quality</h4>
-                <h3>31</h3>
-            </div>
-        </div>
-        <div class="main_page_right">
-            <div class="sunrise">
-                <h4>sunrise</h4>
-                <h3>7:37 AM</h3>
-            </div>
-            <div class="sunset">
-                <h4>sunset</h4>
-                <h3>6:46 PM</h3>
-            </div>
-            <div class="current_weather_icon">
-                <img src="images/partly cloudy.svg">
-            </div>
-            <div class="temp">
-                <h1>76º</h1>
-            </div>
-        </div>
-        <div class="hour_forecast">
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>2 PM</h3>
+            <div class="main_page_left">
+                <div class="current_title">
+                    <h3>Current Weather Forecast</h3>
                 </div>
-                <div class="hour_img">
-                    <img src="images/sunny.svg">
+                <div class="location">
+                    <h2>{{location.name}} {{location.zip}}</h2>
                 </div>
-                <div class="hour_temp">
-                    <h5>57º</h5>
+                <div class="date">
+                    <h3>{{time.date}}</h3>
+                </div>
+                <div class="time">
+                    <h3>{{time.hour_12}} : {{time.minute}} {{time.ampm}}</h3>
+                </div>
+                <div class="hi_low">
+                    <h3>H {{current.temp.high}}º | L {{current.temp.low}}º</h3>
+                </div>
+                <div class="line1"></div>
+                <div class="main_description">
+                    <p>{{current.description_long}}</p>
+                    <p><b>Alerts:</b> {{error}}</p>
+                </div>
+                <div class="line2"></div>
+                <div class="wind">
+                    <h4>wind speed + direction</h4>
+                    <h3>{{current.wind.speed}}</h3>
+                </div>
+                <div class="humidity">
+                    <h4>humidity</h4>
+                    <h3>{{current.humidity}}</h3>
+                </div>
+                <div class="air">
+                    <h4>air quality</h4>
+                    <h3>31</h3>
                 </div>
             </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>3 PM</h3>
+            <div class="main_page_right">
+                <div class="sunrise">
+                    <h4>sunrise</h4>
+                    <h3>{{current.sunrise}}</h3>
                 </div>
-                <div class="hour_img">
-                    <img src="images/sunny.svg">
+                <div class="sunset">
+                    <h4>sunset</h4>
+                    <h3>{{current.sunset}}</h3>
                 </div>
-                <div class="hour_temp">
-                    <h5>57º</h5>
+                <div class="current_weather_icon">
+                    <div v-bind:src="'/images/'+'forecast[0].description_icon'+'.svg'" v-bind:alt="forecast[0].weather.description"></div>
                 </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>4 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/sunny.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>58º</h5>
+                <div class="temp">
+                    <h1>{{current.temp.current}}º</h1>
                 </div>
             </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>5 PM</h3>
+            <div class="hour_forecast">
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[0].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[0].temperature}}º</h5>
+                    </div>
                 </div>
-                <div class="hour_img">
-                    <img src="images/sunny.svg">
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[1].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[1].temperature}}º</h5>
+                    </div>
                 </div>
-                <div class="hour_temp">
-                    <h5>58º</h5>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[2].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[2].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[3].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[3].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[4].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[4].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[5].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[5].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[6].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[6].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[7].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[7].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[8].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[8].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[9].number}} PM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[9].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[10].number}} AM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[10].temperature}}º</h5>
+                    </div>
+                </div>
+                <div class="hour">
+                    <div class="hour_time">
+                        <h3>{{hourly[11].number}} AM</h3>
+                    </div>
+                    <div class="hour_img">
+                        <img src="images/icon-01n.svg">
+                    </div>
+                    <div class="hour_temp">
+                        <h5>{{hourly[11].temperature}}º</h5>
+                    </div>
                 </div>
             </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>6 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/sunny.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>57º</h5>
-                </div>
+            <div class="radar_title">
+                <h3>Radar</h3>
             </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>7 PM</h3>
+            <div class="radar"></div>
+            <div class="info_grid_1">
+                <div class="info">
+                    <div class="heading">
+                        <p>UV index</p>
+                    </div>
+                    <div class="data">
+                        <h3>{{current.uv}}</h3>
+                    </div>
                 </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>53º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>8 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>49º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>9 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>47º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>10 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>46º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>11 PM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>45º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>12 AM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>45º</h5>
-                </div>
-            </div>
-            <div class="hour">
-                <div class="hour_time">
-                    <h3>1 AM</h3>
-                </div>
-                <div class="hour_img">
-                    <img src="images/night.svg">
-                </div>
-                <div class="hour_temp">
-                    <h5>44º</h5>
-                </div>
-            </div>
-        </div>
-        <div class="radar_title">
-            <h3>Radar</h3>
-        </div>
-        <div class="radar"></div>
-        <div class="info_grid_1">
-                <div class="heading">
-                    <p>UV index</p>
-                </div>
-                <div class="data">
-                    <h3>3</h3>
-                </div>
-                <div class="heading">
+                <div class="info">
+                    <div class="heading">
                         <p>visibility</p>
                     </div>
                     <div class="data">
-                        <h3>10 miles</h3>
+                        <h3>{{forecast[0].vis}} miles</h3>
                     </div>
-            </div>
-        <div class="forecast_title">
-            <h3>Upcoming Weather Forecast</h3>
-        </div>
-        <div class="upcoming_weather_forecast">
-            <div class="daily">
-                <div class="day">
-                    <h3>THURS</h3>
-                </div>
-                <div class="day_img">
-                    <img src="images/sunny.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>waning gibbous</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>76º | 55º</h5>
                 </div>
             </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>FRI</h3>
+            <div class="line3"></div>
+            <div class="info_grid_2">
+                <div class="info">
+                    <div class="heading">
+                        <p>pressure</p>
+                    </div>
+                    <div class="data">
+                        <h3>{{forecast[0].pres}} mb</h3>
+                    </div>
                 </div>
-                <div class="day_img">
-                    <img src="images/wind.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>waning gibbous</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>78º | 51º</h5>
-                </div>
-            </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>SAT</h3>
-                </div>
-                <div class="day_img">
-                    <img src="images/sunny.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>waning gibbous</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>72º | 47º</h5>
+                <div class="info">
+                    <div class="heading">
+                        <p>cloud coverage</p>
+                    </div>
+                    <div class="data">
+                        <h3>{{current.cloud_cover}}</h3>
+                    </div>
                 </div>
             </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>SUN</h3>
+            <div class="line4"></div>
+            <div class="info_grid_3">
+                <div class="info">
+                    <div class="heading">
+                        <p>dew point</p>
+                    </div>
+                    <div class="data">
+                        <h3>{{forecast[0].dewpt}}º F</h3>
+                    </div>
                 </div>
-                <div class="day_img">
-                    <img src="images/thunderstorm.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>waning gibbous</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>73º | 48º</h5>
-                </div>
-            </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>MON</h3>
-                </div>
-                <div class="day_img">
-                    <img src="images/partly cloudy.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>last quarter</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>62º | 43º</h5>
+                <div class="info">
+                    <div class="heading">
+                        <p>moon cycle</p>
+                    </div>
+                    <div class="data">
+                        <h3>waning gibbous</h3>
+                    </div>
                 </div>
             </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>TUES</h3>
+            <div class="forecast_title">
+                <h3>Upcoming Weather Forecast</h3>
+            </div>
+            <div class="upcoming_weather_forecast">
+                <div class="daily">
+                    <div class="day">
+                        <h3>THURS</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning gibbous</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>76º | 55º</h5>
+                    </div>
                 </div>
-                <div class="day_img">
-                    <img src="images/sunny.svg">
+                <div class="daily">
+                    <div class="day">
+                        <h3>FRI</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-50d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning gibbous</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>78º | 51º</h5>
+                    </div>
                 </div>
-                <div class="moon_cycle">
-                    <h4>waning crescent</h4>
+                <div class="daily">
+                    <div class="day">
+                        <h3>SAT</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning gibbous</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>72º | 47º</h5>
+                    </div>
                 </div>
-                <div class="hi_lo_temp">
-                    <h5>65º | 49º</h5>
+                <div class="daily">
+                    <div class="day">
+                        <h3>SUN</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-11d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning gibbous</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>73º | 48º</h5>
+                    </div>
+                </div>
+                <div class="daily">
+                    <div class="day">
+                        <h3>MON</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-02d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>last quarter</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>62º | 43º</h5>
+                    </div>
+                </div>
+                <div class="daily">
+                    <div class="day">
+                        <h3>TUES</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-01d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning crescent</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>65º | 49º</h5>
+                    </div>
+                </div>
+                <div class="daily">
+                    <div class="day">
+                        <h3>WED</h3>
+                    </div>
+                    <div class="day_img">
+                        <img src="images/icon-02d.svg">
+                    </div>
+                    <div class="moon_cycle">
+                        <h4>waning crescent</h4>
+                    </div>
+                    <div class="hi_lo_temp">
+                        <h5>67º | 55º</h5>
+                    </div>
                 </div>
             </div>
-            <div class="daily">
-                <div class="day">
-                    <h3>WED</h3>
-                </div>
-                <div class="day_img">
-                    <img src="images/partly cloudy.svg">
-                </div>
-                <div class="moon_cycle">
-                    <h4>waning crescent</h4>
-                </div>
-                <div class="hi_lo_temp">
-                    <h5>67º | 55º</h5>
-                </div>
+            <div class="details">
+                <h4><b>Details</b></h4>
+                <h4>{{forecast[0].weather.description}}</h4>
             </div>
-        </div>
-        <div class="details">
-            <h4><b>Details</b></h4>
-            <h4>Temperatures remain steady in the 70's throughout the week, and dropping into the 60's on Monday. 70% chance for thunderstorms Sunday evening.</h4>
-        </div>
-        <div class="alerts1">
-            <h4><b>Alerts</b></h4>
-        </div>
-        <div class="alerts2">
+            <div class="alerts1">
+                <h4><b>Alerts</b></h4>
+            </div>
+            <div class="alerts2">
                 <h4>FLASH FLOODING WATCH: SUNDAY, OCT. 20 EFFECTIVE AT 7:15PM</h4>
+            </div>
         </div>
-       
+
+        <div class="icon-03d"></div>
+        <div class="icon-04d"></div>
+        <div class="icon-09d"></div>
+        <div class="icon-10d"></div>
+        <div class="icon-11d"></div>
+        
+         
+
+
+        <script src="/js/script.js"></script>
 
         
         
         
-        <!-- <div class="results" id="app">
+            <!-- <div class="results" id="app">
             <h1>TIME</h1>
             <p>{{time.day}}</p>
             <p>{{time.date}}</p>
@@ -426,14 +479,14 @@
             <p>{{forecast[0].snow}}</p>
 
             <p>{{forecast[0].dewpt}}</p>
-            <p>{{forecast[0].pres}} mb</p>
+            <p>{{forecast[0].pres}} mb</p> -->
 
-        </div>
+
         <div id="map"></div>
 
 
 
 
-        <script src="/js/script.js" type="module"></script> -->
+       
     </body>
-</html>
+</html> 
